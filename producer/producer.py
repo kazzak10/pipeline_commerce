@@ -43,7 +43,17 @@ def generer_commande():
     "montant_total":montant_total,
     "ville":ville,
     "timestamp" : datetime.now(timezone.utc).isoformat()
-    }
+  }
   return commande_final
 
 
+producer = KafkaProducer(
+      bootstrap_servers="kafka:9092",
+      value_serializer=lambda v: json.dumps(v).encode("utf-8")
+  )
+
+while True :
+  commande = generer_commande()
+  producer.send("commandes", value=commande)
+  print("commande envoyée"+commande["commande_id"]+ "-" +str(commande["montant_total"])+"€")
+  time.sleep(4)
