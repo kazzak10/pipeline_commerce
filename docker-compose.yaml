@@ -39,5 +39,25 @@ services:
       - kafka
     restart: on-failure
 
+  spark:
+    image: apache/spark:3.5.3
+    user: root
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "8081:8080"
+      - "7077:7077"
+    volumes:
+      - ./spark_jobs:/opt/spark_jobs
+
+  spark-worker:
+    image: apache/spark:3.5.3
+    user: root
+    command: >
+      /opt/spark/bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark:7077
+    depends_on:
+      - spark
+    volumes:
+      - ./spark_jobs:/opt/spark_jobs
 volumes:
   postgres_data:
