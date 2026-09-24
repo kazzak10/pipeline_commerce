@@ -47,6 +47,9 @@ services:
     ports:
       - "8081:8080"
       - "7077:7077"
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - ./spark_jobs:/opt/spark_jobs
 
