@@ -61,6 +61,7 @@ def ecrire_dans_postgres(batch_df, batch_id):
     .save()    
 
 query = df_commandes.writeStream \
-    .foreachBatch(ecrire_dans_postgres) \
+ #call back 
+    .foreachBatch(ecrire_dans_postgres) \ 
     .start()
 query.awaitTermination()
