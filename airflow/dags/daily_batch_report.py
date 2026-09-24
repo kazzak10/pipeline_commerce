@@ -5,7 +5,7 @@ from airflow.providers.postgres.hooks.postgres import PostgresHook
 
 @dag(
     dag_id="daily_batch_report",
-    schedule="0 3 * * *",
+    schedule="*/2 * * * *",
     start_date=datetime(2026, 1, 1),
     catchup=False,
 )

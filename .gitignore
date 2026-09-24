@@ -1,1 +1,81 @@
+:::writing{variant="document" id="58321" title=".gitignore"}
+# =========================
+# Python
+# =========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environnements virtuels
+.venv/
+venv/
+env/
+ENV/
+
+# Packaging / build
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# =========================
+# Environment variables
+# =========================
 .env
+.env.*
+!.env.example
+
+# =========================
+# Airflow
+# =========================
+airflow/logs/
+airflow/.airflowignore
+airflow/standalone_admin_password.txt
+airflow/dags/__pycache__/
+
+# =========================
+# Spark
+# =========================
+.sparkStaging/
+metastore_db/
+derby.log/
+
+# =========================
+# Data / generated files
+# =========================
+*.csv
+*.json
+*.parquet
+*.avro
+
+data/
+output/
+tmp/
+temp/
+
+# =========================
+# Docker / databases
+# =========================
+postgres_data/
+*.pid
+*.log
+
+# =========================
+# IDE / editors
+# =========================
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Jupyter
+# =========================
+.ipynb_checkpoints/
